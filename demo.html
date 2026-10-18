@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernweh Outdoor — demo storefront (widget embed test)</title>
+<style>
+  /* Deliberately clashing styles to prove the widget's Shadow DOM never
+     leaks in or gets leaked into. Real merchant themes will have their
+     own version of this kind of global CSS. */
+  * { box-sizing: content-box; }
+  body {
+    font-family: Georgia, serif;
+    background: #fdf6ec;
+    color: #3a2e1f;
+    margin: 0;
+    padding: 0;
+  }
+  button {
+    font-family: Georgia, serif;
+    background: red;
+    color: white;
+    border: 4px dashed blue;
+    padding: 20px;
+    font-size: 22px;
+  }
+  input {
+    border: 5px solid green;
+    font-size: 24px;
+    padding: 10px;
+  }
+  header {
+    padding: 24px 40px;
+    border-bottom: 2px solid #3a2e1f;
+  }
+  header h1 { margin: 0; font-size: 22px; }
+  main {
+    max-width: 720px;
+    margin: 60px auto;
+    padding: 0 24px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .product {
+    background: white;
+    border: 1px solid #e0d5c0;
+    padding: 16px;
+    text-align: center;
+  }
+  .config-note {
+    background: #fff8e6;
+    border: 1px solid #e6d9a8;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 40px;
+    font-family: -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fernweh Outdoor</h1>
+</header>
+
+<main>
+  <p>This page intentionally styles buttons red-with-blue-dashes and inputs with thick green borders — if the Sift widget's floating button or chat panel looks like that instead of its own dark/violet design, the Shadow DOM isolation failed. It shouldn't.</p>
+
+  <div class="product-grid">
+    <div class="product">Alpine Wool Sweater<br>$89</div>
+    <div class="product">Ridge Hiking Boots<br>$128</div>
+    <div class="product">Trailhead Backpack<br>$98</div>
+  </div>
+
+  <div class="config-note">
+    <strong>Widget config for this demo:</strong><br>
+    <code>data-merchant-id="fernweh-outdoor"</code><br>
+    <code>data-engine-url="http://localhost:3000"</code><br><br>
+    Edit the <code>&lt;script&gt;</code> tag at the bottom of this file to point at your
+    actual running catalog engine and a merchant id you've registered + synced.
+    Open the browser console to see any connection errors if the widget doesn't respond.
+  </div>
+</main>
+
+<!--
+  This is exactly how a merchant would embed it in their theme — one script
+  tag, config via data attributes, no build step, no other markup needed.
+-->
+<script
+  src="./widget.js"
+  data-merchant-id="709ef68e-9991-4933-8c2c-78e1465bec92"
+  data-engine-url="http://localhost:3000"
+  data-assistant-name="Fern"
+  data-greeting="Hi — I'm Fern. Tell me what you're shopping for and I'll pull it up."
+  defer
+></script>
+
+</body>
+</html>
